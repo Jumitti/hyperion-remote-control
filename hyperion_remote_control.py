@@ -104,23 +104,36 @@ def handle(msg):
                 bot.sendMessage(chat_id_key, "I'm running :)")
 
             if command == '/help':
-                bot.sendMessage(chat_id_key,
-                                ["/temperature - Get CPU temperature\n"
-                                 "/empty_trash - As expected\n"
-                                 "/quick_update - To update and upgrade without autoremove and reboot\n"
-                                 "/update - To update, upgrade, autoremove AND REBOOT\n"
-                                 "/reboot - Sometimes it's good\n"
-                                 "/shutdown - As excepted\n"] if os_name == 'Linux' else ""
-                                                                                         "/hyperion_on - Turn on Hyperion\n"
-                                                                                         "/hyperion_off - Turn off Hyperion\n"
-                                                                                         "/video_on - Hyperion based on video input\n"
-                                                                                         "/video_off - Hyperion background effect/color\n"
-                                                                                         "/b100 - Brightness 100%\n"
-                                                                                         "/b75 - Brightness 75%\n"
-                                                                                         "/b50 - Brightness 50%\n"
-                                                                                         "/b25 - Brightness 25%\n"
-                                                                                         "/test - Is my Telegram bot still works ?\n"
-                                                                                         "/help - A little reminder")
+                if os_name == 'Linux':
+                    bot.sendMessage(chat_id_key,
+                                    "/temperature - Get CPU temperature\n"
+                                    "/empty_trash - As expected\n"
+                                    "/quick_update - To update and upgrade without autoremove and reboot\n"
+                                    "/update - To update, upgrade, autoremove AND REBOOT\n"
+                                    "/reboot - Sometimes it's good\n"
+                                    "/shutdown - As excepted\n"
+                                    "/hyperion_on - Turn on Hyperion\n"
+                                    "/hyperion_off - Turn off Hyperion\n"
+                                    "/video_on - Hyperion based on video input\n"
+                                    "/video_off - Hyperion background effect/color\n"
+                                    "/b100 - Brightness 100%\n"
+                                    "/b75 - Brightness 75%\n"
+                                    "/b50 - Brightness 50%\n"
+                                    "/b25 - Brightness 25%\n"
+                                    "/test - Is my Telegram bot still works ?\n"
+                                    "/help - A little reminder")
+                else:
+                    bot.sendMessage(chat_id_key,
+                                    "/hyperion_on - Turn on Hyperion\n"
+                                    "/hyperion_off - Turn off Hyperion\n"
+                                    "/video_on - Hyperion based on video input\n"
+                                    "/video_off - Hyperion background effect/color\n"
+                                    "/b100 - Brightness 100%\n"
+                                    "/b75 - Brightness 75%\n"
+                                    "/b50 - Brightness 50%\n"
+                                    "/b25 - Brightness 25%\n"
+                                    "/test - Is my Telegram bot still works ?\n"
+                                    "/help - A little reminder")
 
         else:
             if os_name != 'Linux':
