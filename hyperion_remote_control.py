@@ -15,8 +15,22 @@ with open('SECRETS.json', 'r') as id_file:
     id_data = json.load(id_file)
 
 chat_id_key = id_data['id']
-command_list = ['/temp', '/quick_update', '/update', '/empty_trash', '/reboot', '/test', '/restart_script', '/help',
-                '/shutdown', '/ambilight_off', '/ambilight_on', '/b100', '/b75', '/b50', '/b25', '/video_on',
+command_list = ['/temp',
+                '/quick_update',
+                '/update',
+                '/empty_trash',
+                '/reboot',
+                '/test',
+                '/restart_script',
+                '/help',
+                '/shutdown',
+                '/ambilight_off',
+                '/ambilight_on',
+                '/b100',
+                '/b75',
+                '/b50',
+                '/b25',
+                '/video_on',
                 'video_off']
 update_list = ['02:00', '02:30']
 
