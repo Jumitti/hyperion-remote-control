@@ -31,11 +31,6 @@ def handle(msg):
                 if command == '/temperature':
                     bot.sendMessage(chat_id_key, f'{str(temperature)} °C')
 
-                if command == '/empty_trash':
-                    os.system('sudo trash-empty')
-                    os.system('trash-empty')
-                    bot.sendMessage(chat_id_key, 'Done')
-
                 if command == '/quick_update':
                     bot.sendMessage(chat_id_key, 'Starting update...')
                     os.system('sudo apt-get update -y')
@@ -107,7 +102,6 @@ def handle(msg):
                 if os_name == 'Linux':
                     bot.sendMessage(chat_id_key,
                                     "/temperature - Get CPU temperature\n"
-                                    "/empty_trash - As expected\n"
                                     "/quick_update - To update and upgrade without autoremove and reboot\n"
                                     "/update - To update, upgrade, autoremove AND REBOOT\n"
                                     "/reboot - Sometimes it's good\n"
@@ -155,7 +149,6 @@ def handle(msg):
 command_linux = ['/temperature',
                  '/quick_update',
                  '/update',
-                 '/empty_trash',
                  '/reboot',
                  '/shutdown']
 
