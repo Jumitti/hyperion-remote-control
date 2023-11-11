@@ -13,8 +13,11 @@ from datetime import datetime
 from telepot.loop import MessageLoop
 
 chat_id_key = [YOUR_ID]
-command_list = ['/temp','/quick_update','/update','/empty_trash','/reboot','/test','/restart_script','/help','/shutdown', '/ambilight_off', '/ambilight_on', '/b100', '/b75', '/b50', '/b25','/video_on','video_off']
-update_list = ['02:00','02:30']
+command_list = ['/temp', '/quick_update', '/update', '/empty_trash', '/reboot', '/test', '/restart_script', '/help',
+                '/shutdown', '/ambilight_off', '/ambilight_on', '/b100', '/b75', '/b50', '/b25', '/video_on',
+                'video_off']
+update_list = ['02:00', '02:30']
+
 
 def handle(msg):
     chat_id_input = msg['chat']['id']
@@ -23,7 +26,7 @@ def handle(msg):
         if command == '/temp':
             temp_cpu1 = str(temp)
             temp_cpu2 = "°C"
-            temp_cpu3=temp_cpu1+temp_cpu2
+            temp_cpu3 = temp_cpu1 + temp_cpu2
             bot.sendMessage(chat_id_key, temp_cpu3)
         if command == '/quick_update':
             weekly_update.on()
@@ -49,7 +52,8 @@ def handle(msg):
             bot.sendMessage(chat_id_key, 'See U soon')
             os.system('sudo reboot now')
         if command == '/help':
-            bot.sendMessage(chat_id_key, "/temp - Get temperature\n/quick_update - To update and upgrade without autoremove and reboot\n/update - To update, upgrade and autoremove AND REBOOT\n/trash_empty - As expected\n/reboot - Sometimes it's good\n/shutdown - As excepted\n/restart_script - As excepted\n/help - A little reminder")
+            bot.sendMessage(chat_id_key,
+                            "/temp - Get temperature\n/quick_update - To update and upgrade without autoremove and reboot\n/update - To update, upgrade and autoremove AND REBOOT\n/trash_empty - As expected\n/reboot - Sometimes it's good\n/shutdown - As excepted\n/restart_script - As excepted\n/help - A little reminder")
         if command == '/test':
             bot.sendMessage(chat_id_key, 'test')
         if command == '/restart_script':
@@ -90,20 +94,21 @@ def handle(msg):
             bot.sendMessage(chat_id_key, "Video OFF")
         elif command not in command_list:
             bot.sendMessage(chat_id_key, "I don't understand... Try /help")
-    else :
+    else:
         chat_id1 = 'You are not allowed, your ID is '
         chat_id2 = str(chat_id_input)
-        chat_id3 = chat_id1+chat_id2
+        chat_id3 = chat_id1 + chat_id2
         chat_id4 = 'Someone trying to do something strange...\nID: '
         chat_id6 = '\nMessage: '
         chat_id7 = str(command)
-        chat_id5 = chat_id4+chat_id2+chat_id6+chat_id7
+        chat_id5 = chat_id4 + chat_id2 + chat_id6 + chat_id7
         bot.sendMessage(chat_id_input, chat_id3)
         bot.sendMessage(chat_id_key, chat_id5)
 
+
 bot = telepot.Bot([YOUR_TOKEN])
 MessageLoop(bot, handle).run_as_thread()
-print ('Im listening...')
+print('Im listening...')
 bot.sendMessage(chat_id_key, 'Hello World 👋🏽')
 
 while 1:
