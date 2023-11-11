@@ -60,7 +60,7 @@ def handle(msg):
                     bot.sendMessage(chat_id_key, 'Seen U soon')
                     os.system('sudo shutdown now')
 
-        if command in command_hyperion:
+        elif command in command_hyperion:
             # Commands for Hyperion
             if command == '/hyperion_on':
                 os.system('hyperion-remote --on')
@@ -98,7 +98,7 @@ def handle(msg):
                 os.system('hyperion-remote -L 25')
                 bot.sendMessage(chat_id_key, "Brightness 25%")
 
-        if command in command_telegram_bot:
+        elif command in command_telegram_bot:
             # Commands for Telegram bot
             if command == '/test':
                 bot.sendMessage(chat_id_key, "I'm running :)")
