@@ -159,7 +159,7 @@ command_hyperion = ['/hyperion_on',
                     '/b50',
                     '/b25',
                     '/video_on',
-                    'video_off']
+                    '/video_off']
 
 command_telegram_bot = ['/test',
                         '/help']
