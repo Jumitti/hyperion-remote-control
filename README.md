@@ -59,7 +59,7 @@ On the device where you install Hyperion:
     ```
     pip install gpiozero
     ```
-2. Extract ```HRC.zip``` where you want → [Release]
+2. Extract ```HRC.zip``` where you want → [Release](https://github.com/Jumitti/hyperion-remote-control/releases)
    - (For Raspberry) Don't forget to give all permissions at ```HRC``` folder:
      - In ```HRC``` folder, open a terminal:
      ```
