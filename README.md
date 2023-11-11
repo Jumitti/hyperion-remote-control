@@ -213,14 +213,5 @@ Feel free to create your own Telegram bot with your own command 😊 My script i
 
 Yes it is if you don't create a public bot. When in doubt, you put your token and your ID in a SECRETS.json file. So your identifiers are not written in the script. In addition, I added a function that prevents commands from an unrecognized ID from being executed. A prevention message is sent to the unrecognized ID. And a message will be sent to you to warn you in this case with the ID trying to communicate with your Telegram Bot. 
 
-
-    
-
-
-
-
-
-
-
-*Note:*
+# Disclaimer
 This project is an independent initiative for enhancing the Hyperion experience and is not affiliated with the official Hyperion project or Philips Ambilight.
