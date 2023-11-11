@@ -164,13 +164,11 @@ command_hyperion = ['/hyperion_on',
 command_telegram_bot = ['/test',
                         '/help']
 
+# Start Telegram bot
 script_directory = os.path.dirname(os.path.abspath(__file__))
 secrets_path = os.path.join(script_directory, 'SECRETS.json')
-
 with open(secrets_path, 'r') as secrets_file:
     secrets = json.load(secrets_file)
-
-# Start Telegram bot
 
 chat_id_key = secrets['id']
 
