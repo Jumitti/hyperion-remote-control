@@ -1,2 +1,4 @@
-telepot
-gpiozero
+telepot~=12.7
+
+# For Linux (Raspberry)
+gpiozero~=2.0
