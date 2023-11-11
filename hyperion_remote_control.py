@@ -40,7 +40,7 @@ def handle(msg):
     command = msg['text']
     if chat_id_input == chat_id_key:
         if command == '/temp':
-            temp_cpu1 = str(temp)
+            temp_cpu1 = str(temperature)
             temp_cpu2 = "°C"
             temp_cpu3 = temp_cpu1 + temp_cpu2
             bot.sendMessage(chat_id_key, temp_cpu3)
@@ -129,7 +129,7 @@ bot.sendMessage(chat_id_key, 'Hello World 👋🏽')
 
 while 1:
     cpu = CPUTemperature()
-    temp = cpu.temperature
+    temperature = cpu.temperature
     now = datetime.now()
     hour = now.strftime("%H:%M")
     date = now.strftime("%d")
