@@ -187,9 +187,9 @@ while 1:
         # Temperature control
         cpu = CPUTemperature()
         temperature = cpu.temperature
-        if temperature >= 65:
-            bot.sendMessage(chat_id_key, f'WARNING ! CPU temperature too hot{temperature}')
         if temperature >= 85:
+            bot.sendMessage(chat_id_key, f'WARNING ! CPU temperature too hot{temperature}')
+        if temperature >= 90:
             bot.sendMessage(chat_id_key,
                             f'WARNING ! CPU temperature too hot{temperature}.\nShutdown in progress... See U soon')
             os.system('sudo shutdown now')
