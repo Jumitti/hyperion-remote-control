@@ -11,39 +11,13 @@ import telepot
 from gpiozero import CPUTemperature
 from telepot.loop import MessageLoop
 
-with open('SECRETS.json', 'r') as id_file:
-    id_data = json.load(id_file)
-
-chat_id_key = id_data['id']
-command_list = ['/temp',
-                '/quick_update',
-                '/update',
-                '/empty_trash',
-                '/reboot',
-                '/test',
-                '/restart_script',
-                '/help',
-                '/shutdown',
-                '/ambilight_off',
-                '/ambilight_on',
-                '/b100',
-                '/b75',
-                '/b50',
-                '/b25',
-                '/video_on',
-                'video_off']
-update_list = ['02:00', '02:30']
-
 
 def handle(msg):
     chat_id_input = msg['chat']['id']
     command = msg['text']
     if chat_id_input == chat_id_key:
         if command == '/temp':
-            temp_cpu1 = str(temperature)
-            temp_cpu2 = "°C"
-            temp_cpu3 = temp_cpu1 + temp_cpu2
-            bot.sendMessage(chat_id_key, temp_cpu3)
+            bot.sendMessage(chat_id_key, f'{str(temperature)} °C')
         if command == '/quick_update':
             weekly_update.on()
             bot.sendMessage(chat_id_key, 'Starting update...')
@@ -122,6 +96,29 @@ def handle(msg):
         bot.sendMessage(chat_id_key, chat_id5)
 
 
+with open('SECRETS.json', 'r') as id_file:
+    id_data = json.load(id_file)
+
+chat_id_key = id_data['id']
+command_list = ['/temp',
+                '/quick_update',
+                '/update',
+                '/empty_trash',
+                '/reboot',
+                '/test',
+                '/restart_script',
+                '/help',
+                '/shutdown',
+                '/ambilight_off',
+                '/ambilight_on',
+                '/b100',
+                '/b75',
+                '/b50',
+                '/b25',
+                '/video_on',
+                'video_off']
+update_list = ['02:00', '02:30']
+
 bot = telepot.Bot(id_data['token'])
 MessageLoop(bot, handle).run_as_thread()
 print('Im listening...')
@@ -134,6 +131,9 @@ while 1:
     hour = now.strftime("%H:%M")
     date = now.strftime("%d")
     day = now.weekday()
+
+    if temperature >= 65:
+        bot.sendMessage(chat_id_key, f'WARNING ! CPU temperature too hot{temperature}')
     if day == 0 and hour == '02:30':
         bot.sendMessage(chat_id_key, 'Starting weekly update...')
         os.system('sudo apt-get update -y')
