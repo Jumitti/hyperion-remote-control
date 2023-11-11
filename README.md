@@ -39,7 +39,13 @@ Video tutorial (in French but I'm sure you can find information on internet):
 - https://www.youtube.com/watch?v=eIfdLJi3Gvs
 - https://www.youtube.com/watch?v=F4XjuX7yn3g
 
-# Installation of Hyperion Remote Control
+### Installation of Hyperion Remote Control
+
+There is a good chance that my script will not work depending on the hardware you used to build your Hyperion. Here are my characteristics:
+- Raspberry Pi 3
+- LED: [APA102](https://fr.aliexpress.com/item/4000340545026.html?spm=a2g0o.order_list.order_list_main.30.6aeb5e5bH8csxe&gatewayAdapt=glo2fra)
+- Video acquisition: [LINK](https://fr.aliexpress.com/item/4000917130635.html?spm=a2g0o.order_list.order_list_main.35.6aeb5e5bH8csxe&gatewayAdapt=glo2fra)
+  - Encoding format: YUYV
 
 *Note* :You need to create an account on [Telegram](https://web.telegram.org/k/)
 
@@ -163,6 +169,39 @@ Just send ```/help``` to your Telegram bot and see all command ! 😊
 | `/b25`          | Brightness 25%                                      |
 | `/test`         | Is my Telegram bot still working?                   |
 | `/help`         | A little reminder                                   |
+
+Hyperion can make heat your Raspberry, so to prevent an overheat I had a command to know CPU temperature:
+- In ```hyperion_remote_control.py```, you can set critical temperature, replace "85" and "90":
+    ```
+    if temperature >= 85:
+        bot.sendMessage(chat_id_key, f'WARNING ! CPU temperature too hot{temperature}')
+    if temperature >= 90:
+        bot.sendMessage(chat_id_key,
+            f'WARNING ! CPU temperature too hot{temperature}.\nShutdown in progress... See U soon')
+        os.system('sudo shutdown now')
+    ```
+
+I add a function to auto-update your Raspberry every monday @ 02:30 and major update with reboot appends every 1st of each month @ 02:00, you can change that:
+- Day: M=0; T=1; W=2...
+    ```
+    # Quick update every monday @ 2:30
+    if day == 0 and hour == '02:30':
+        bot.sendMessage(chat_id_key, 'Starting weekly update...')
+        os.system('sudo apt-get update -y')
+        bot.sendMessage(chat_id_key, 'Weekly update done.\nStarting weekly upgrade...')
+        os.system('sudo apt-get upgrade -y')
+        bot.sendMessage(chat_id_key, 'Weekly upgrade done')
+    
+    # Update every 1st of month @ 2:00
+    if date == '1' and hour == '02:00':
+        bot.sendMessage(chat_id_key, 'Starting monthly update...')
+        os.system('sudo apt-get update -y')
+        bot.sendMessage(chat_id_key, 'Monthly update done.\nStarting monthly upgrade...')
+        os.system('sudo apt-get upgrade -y')
+        bot.sendMessage(chat_id_key, 'Monthly upgrade done.\nStarting monthly autoremove...')
+        os.system('sudo apt-get autoremove -y')
+        bot.sendMessage(chat_id_key, 'Monthly autoremove done.\nStarting reboot...\nSee U soon')
+    ```
 
 # Can I use my own command ?
 
