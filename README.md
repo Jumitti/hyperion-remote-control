@@ -152,23 +152,23 @@ Just send ```/help``` to your Telegram bot and see all command ! 😊
 - select ```Edit Commands```
 - paste message from ```/help``` without /
 
-| Command         | Description                                         | Raspberry |
-|-----------------|-----------------------------------------------------|-----------|
-| `/temperature`  | Get CPU temperature                                 | ✅         |
-| `/quick_update` | To update and upgrade without autoremove and reboot | ✅         |
-| `/update`       | To update, upgrade, autoremove AND REBOOT           | ✅         |
-| `/reboot`       | Sometimes it's good                                 | ✅         |
-| `/shutdown`     | As expected                                         | ✅         |
-| `/hyperion_on`  | Turn on Hyperion                                    |
-| `/hyperion_off` | Turn off Hyperion                                   |
-| `/video_on`     | Hyperion based on video input                       |
-| `/video_off`    | Hyperion background effect/color                    |
-| `/b100`         | Brightness 100%                                     |
-| `/b75`          | Brightness 75%                                      |
-| `/b50`          | Brightness 50%                                      |
-| `/b25`          | Brightness 25%                                      |
-| `/test`         | Is my Telegram bot still working?                   |
-| `/help`         | A little reminder                                   |
+| Command         | Description                                         | Raspberry | Windows |
+|-----------------|-----------------------------------------------------|-----------|---------|
+| `/temperature`  | Get CPU temperature                                 | ✅         | ❌       |
+| `/quick_update` | To update and upgrade without autoremove and reboot | ✅         | ❌       |
+| `/update`       | To update, upgrade, autoremove AND REBOOT           | ✅         | ❌       |
+| `/reboot`       | Sometimes it's good                                 | ✅         | ❌       |
+| `/shutdown`     | As expected                                         | ✅         | ❌       |
+| `/hyperion_on`  | Turn on Hyperion                                    | ✅         | ✅       |
+| `/hyperion_off` | Turn off Hyperion                                   | ✅         | ✅       |
+| `/video_on`     | Hyperion based on video input                       | ✅         | ✅       |
+| `/video_off`    | Hyperion background effect/color                    | ✅         | ✅       |
+| `/b100`         | Brightness 100%                                     | ✅         | ✅       |
+| `/b75`          | Brightness 75%                                      | ✅         | ✅       |
+| `/b50`          | Brightness 50%                                      | ✅         | ✅       |
+| `/b25`          | Brightness 25%                                      | ✅         | ✅       |
+| `/test`         | Is my Telegram bot still working?                   | ✅         | ✅       |
+| `/help`         | A little reminder                                   | ✅         | ✅       |
 
 Hyperion can make heat your Raspberry, so to prevent an overheat I had a command to know CPU temperature:
 - In ```hyperion_remote_control.py```, you can set critical temperature, replace "85" and "90":
