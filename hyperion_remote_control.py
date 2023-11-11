@@ -11,8 +11,12 @@ from gpiozero import OutputDevice
 from gpiozero import CPUTemperature
 from datetime import datetime
 from telepot.loop import MessageLoop
+import json
 
-chat_id_key = [YOUR_ID]
+with open('SECRETS.json', 'r') as id_file:
+    id_data = json.load(id_file)
+
+chat_id_key = id_data['id']
 command_list = ['/temp', '/quick_update', '/update', '/empty_trash', '/reboot', '/test', '/restart_script', '/help',
                 '/shutdown', '/ambilight_off', '/ambilight_on', '/b100', '/b75', '/b50', '/b25', '/video_on',
                 'video_off']
@@ -106,7 +110,7 @@ def handle(msg):
         bot.sendMessage(chat_id_key, chat_id5)
 
 
-bot = telepot.Bot([YOUR_TOKEN])
+bot = telepot.Bot(id_data['token'])
 MessageLoop(bot, handle).run_as_thread()
 print('Im listening...')
 bot.sendMessage(chat_id_key, 'Hello World 👋🏽')
