@@ -12,7 +12,7 @@ from gpiozero import CPUTemperature
 from datetime import datetime
 from telepot.loop import MessageLoop
 
-chat_id_key = 1377074018
+chat_id_key = [YOUR_ID]
 command_list = ['/temp','/quick_update','/update','/empty_trash','/reboot','/test','/restart_script','/help','/shutdown', '/ambilight_off', '/ambilight_on', '/b100', '/b75', '/b50', '/b25','/video_on','video_off']
 update_list = ['02:00','02:30']
 
@@ -101,7 +101,7 @@ def handle(msg):
         bot.sendMessage(chat_id_input, chat_id3)
         bot.sendMessage(chat_id_key, chat_id5)
 
-bot = telepot.Bot([YOUR TOKEN])
+bot = telepot.Bot([YOUR_TOKEN])
 MessageLoop(bot, handle).run_as_thread()
 print ('Im listening...')
 bot.sendMessage(chat_id_key, 'Hello World 👋🏽')
