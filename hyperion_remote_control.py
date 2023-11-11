@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import json
 import os
 import sys
-import subprocess
 import time
-import telepot
-
-from gpiozero import OutputDevice
-from gpiozero import CPUTemperature
 from datetime import datetime
+
+import telepot
+from gpiozero import CPUTemperature
 from telepot.loop import MessageLoop
-import json
 
 with open('SECRETS.json', 'r') as id_file:
     id_data = json.load(id_file)
