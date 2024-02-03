@@ -4,7 +4,7 @@ A Telegram bot to control Hyperion ambilight 🎉
 The Hyperion Remote Control script leverages the Hyperion project, enabling users to control and customize their ambient lighting experience. Integrated with a Telegram bot, the script allows users to command Hyperion functions.
 
 ### Table
-1. [What is Hyperion](#a-idhyperionawhat-is-hyperion)
+1. [What is Hyperion](#hyperion)
 2. [Installation of Hyperion Remote Control](#a-idinstallainstallation-of-hyperion-remote-control)
 3. [How to use Hyperion Remote Control](#a-idhyperion_remote_controlahow-to-use-hyperion-remote-control)
    1. [NEWS from HRC v1.0](#a-idnewsanews-from-hrc-v10httpsgithubcomjumittihyperion-remote-controlreleasestagv10)
