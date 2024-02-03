@@ -14,7 +14,7 @@ The Hyperion Remote Control script leverages the Hyperion project, enabling user
 6. [Disclaimer](#disclaimer)
 7. [Credit](#credit)
 
-## <a id="hyperion"></a>What is Hyperion
+## <a id="hyperion"></a>What is [Hyperion](https://github.com/hyperion-project)
 Hyperion is an open-source project designed to enhance the viewing experience by synchronizing ambient LED lighting with on-screen content. It utilizes a Raspberry Pi or similar hardware to control individual LEDs placed around a TV or monitor. Hyperion analyzes the screen content in real-time, creating dynamic lighting effects that extend beyond the display.
 
 #### Key Features
