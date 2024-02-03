@@ -149,9 +149,9 @@ A keyboard with all options is available. You can also change the brightness and
 *Note*: The functions are also accessible as commands (see **List of commands** section below). A description is associated with it.
 <div style="text-align:center">
     <p float="left">
-      <img src="img/brightness.jpg" width="100" />
-      <img src="img/effects.jpg" width="100" /> 
       <img src="img/menu.jpg" width="100" />
+      <img src="img/brightness.jpg" width="100" /> 
+      <img src="img/effects.jpg" width="100" />
     </p>
 </div>
 
