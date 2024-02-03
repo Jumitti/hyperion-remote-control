@@ -10,6 +10,7 @@ from datetime import datetime
 
 import telepot
 from telepot.loop import MessageLoop
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 
 os_name = platform.system()
 if os_name == 'Linux':
@@ -28,10 +29,10 @@ def handle(msg):
         if command in command_linux:
             if os_name == 'Linux':
                 # Useful commands for Raspberry
-                if command == '/temperature':
+                if command in ['/temperature', 'Temp. 🌡️']:
                     bot.sendMessage(chat_id_key, f'{str(temperature)} °C')
 
-                if command == '/quick_update':
+                if command in ['/quick_update', 'Update ⚙️']:
                     bot.sendMessage(chat_id_key, 'Starting update...')
                     os.system('sudo apt-get update -y')
                     bot.sendMessage(chat_id_key, 'Update done.\nStarting upgrade...')
@@ -47,58 +48,48 @@ def handle(msg):
                     os.system('sudo apt-get autoremove -y')
                     bot.sendMessage(chat_id_key, 'Autoremove done.\nStarting reboot...\nSee U soon')
 
-                if command == '/reboot':
+                if command in ['/reboot', 'Reboot 🔄️']:
                     bot.sendMessage(chat_id_key, 'See U soon')
                     os.system('sudo reboot now')
 
-                if command == '/shutdown':
+                if command in ['/shutdown', 'Shutdown 🛑']:
                     bot.sendMessage(chat_id_key, 'Seen U soon')
                     os.system('sudo shutdown now')
 
         elif command in command_hyperion:
             # Commands for Hyperion
-            if command == '/hyperion_on':
+            if command in ['/hyperion_on', 'Start 🌞']:
                 os.system('hyperion-remote --on')
                 os.system('hyperion-remote --clearall')
                 os.system('hyperion-remote -E V4L')
                 bot.sendMessage(chat_id_key, "Ambilight ON")
 
-            if command == '/hyperion_off':
+            if command in ['/hyperion_off', 'Stop 🌚']:
                 os.system('hyperion-remote --off')
                 bot.sendMessage(chat_id_key, "Ambilight OFF")
 
-            if command == '/video_on':
+            if command in ['/video_on', 'Video ▶️']:
                 os.system('hyperion-remote --clearall')
                 os.system('hyperion-remote -E V4L')
                 bot.sendMessage(chat_id_key, "Video ON")
 
-            if command == '/video_off':
+            if command in ['/video_off', 'Video ⏹️']:
                 os.system('hyperion-remote --clearall')
                 os.system('hyperion-remote -D V4L')
                 bot.sendMessage(chat_id_key, "Video OFF")
 
-            if command == '/b100':
-                os.system('hyperion-remote -L 100')
-                bot.sendMessage(chat_id_key, "Brightness 100%")
+            if command in ['/brightness', 'Bright. 🔅']:
+                bot.sendMessage(chat_id_key, 'Choose brightness:', reply_markup=brightness_keyboard)
 
-            if command == '/b75':
-                os.system('hyperion-remote -L 75')
-                bot.sendMessage(chat_id_key, "Brightness 75%")
-
-            if command == '/b50':
-                os.system('hyperion-remote -L 50')
-                bot.sendMessage(chat_id_key, "Brightness 50%")
-
-            if command == '/b25':
-                os.system('hyperion-remote -L 25')
-                bot.sendMessage(chat_id_key, "Brightness 25%")
+            if command in ['/effect', 'Effect 🎆']:
+                bot.sendMessage(chat_id_key, 'Choose color/effect:', reply_markup=color_effect_keyboard)
 
         elif command in command_telegram_bot:
             # Commands for Telegram bot
             if command == '/test':
                 bot.sendMessage(chat_id_key, "I'm running :)")
 
-            if command == '/help':
+            if command in ['/help', 'Help ❔']:
                 if os_name == 'Linux':
                     bot.sendMessage(chat_id_key,
                                     "/temperature - Get CPU temperature\n"
@@ -110,10 +101,8 @@ def handle(msg):
                                     "/hyperion_off - Turn off Hyperion\n"
                                     "/video_on - Hyperion based on video input\n"
                                     "/video_off - Hyperion background effect/color\n"
-                                    "/b100 - Brightness 100%\n"
-                                    "/b75 - Brightness 75%\n"
-                                    "/b50 - Brightness 50%\n"
-                                    "/b25 - Brightness 25%\n"
+                                    "/brightness - Manage brightness\n"
+                                    "/effect - Select effect\n"
                                     "/test - Is my Telegram bot still works ?\n"
                                     "/help - A little reminder")
                 else:
@@ -122,10 +111,8 @@ def handle(msg):
                                     "/hyperion_off - Turn off Hyperion\n"
                                     "/video_on - Hyperion based on video input\n"
                                     "/video_off - Hyperion background effect/color\n"
-                                    "/b100 - Brightness 100%\n"
-                                    "/b75 - Brightness 75%\n"
-                                    "/b50 - Brightness 50%\n"
-                                    "/b25 - Brightness 25%\n"
+                                    "/brightness - Manage brightness\n"
+                                    "/effect - Select effect\n"
                                     "/test - Is my Telegram bot still works ?\n"
                                     "/help - A little reminder")
 
@@ -146,23 +133,112 @@ def handle(msg):
         bot.sendMessage(chat_id_key, warning_unknown_id)
 
 
-command_linux = ['/temperature',
-                 '/quick_update',
-                 '/update',
-                 '/reboot',
-                 '/shutdown']
+def on_callback_query(msg):
+    query_id, chat_id, query_data = telepot.glance(msg, flavor='callback_query')
+    if query_data.isdigit():
+        os.system(f'hyperion-remote -L {int(query_data)}')
+        bot.answerCallbackQuery(query_id, text=f"Brightness {int(query_data)}%")
+    else:
+        os.system('hyperion-remote --clearall')
+        if query_data in ['FF0000', 'FFA500', 'FFFF00', '00FF00', '0000FF', '4B0082', '8A2BE2', 'FFC0CB', 'FFFFFF']:
+            os.system(f'hyperion-remote -c {query_data}')
+        else:
+            os.system(f'hyperion-remote -e "{query_data}"')
+        bot.answerCallbackQuery(query_id, text=f"Color/effect {query_data} applied ")
 
-command_hyperion = ['/hyperion_on',
-                    '/hyperion_off',
+
+command_linux = ['/temperature', 'Temp. 🌡️',
+                 '/quick_update', 'Update ⚙️',
+                 '/update',
+                 '/reboot', 'Reboot 🔄️',
+                 '/shutdown', 'Shutdown 🛑']
+
+command_hyperion = ['/hyperion_on', 'Start 🌞',
+                    '/hyperion_off', 'Stop 🌚',
+                    '/brightness', 'Bright. 🔅',
+                    '/effect', 'Effect 🎆',
                     '/b100',
                     '/b75',
                     '/b50',
                     '/b25',
-                    '/video_on',
-                    '/video_off']
+                    '/video_on', 'Video ▶️',
+                    '/video_off', 'Video ⏹️']
 
 command_telegram_bot = ['/test',
-                        '/help']
+                        '/help', 'Help ❔']
+
+main_buttons = [
+    [KeyboardButton(text='Start 🌞'), KeyboardButton(text='Stop 🌚')],
+    [KeyboardButton(text='Video ▶️'), KeyboardButton(text='Video ⏹️')],
+    [KeyboardButton(text='Effect 🎆'), KeyboardButton(text='Bright. 🔅')],
+    [KeyboardButton(text='Temp. 🌡️'), KeyboardButton(text='Update ⚙️')],
+    [KeyboardButton(text='Reboot 🔄️'), KeyboardButton(text='Shutdown 🛑')],
+    [KeyboardButton(text='Help ❔')]
+]
+main_keyboard = ReplyKeyboardMarkup(keyboard=main_buttons, resize_keyboard=True)
+
+brightness_button = [
+    [InlineKeyboardButton(text='25', callback_data='25')],
+    [InlineKeyboardButton(text='50', callback_data='50')],
+    [InlineKeyboardButton(text='75', callback_data='75')],
+    [InlineKeyboardButton(text='100', callback_data='100')]
+]
+brightness_keyboard = InlineKeyboardMarkup(inline_keyboard=brightness_button)
+
+color_effect_button = [
+    [InlineKeyboardButton(text='Red 🔴', callback_data='FF0000'),
+     InlineKeyboardButton(text='Orange 🟠', callback_data='FFA500'),
+     InlineKeyboardButton(text='Yellow 🟡', callback_data='FFFF00')],
+    [InlineKeyboardButton(text='Green 🟢', callback_data='00FF00'),
+     InlineKeyboardButton(text='Blue 🩵', callback_data='0000FF'),
+     InlineKeyboardButton(text='Indigo 🔵', callback_data='4B0082')],
+    [InlineKeyboardButton(text='Purple 🟣', callback_data='8A2BE2'),
+     InlineKeyboardButton(text='Pink 🩷', callback_data='FFC0CB'),
+     InlineKeyboardButton(text='White ⚪', callback_data='FFFFFF')],
+    [InlineKeyboardButton(text='Atomic swirl', callback_data='Atomic swirl'),
+     InlineKeyboardButton(text='Blue mood blobs', callback_data='Blue mood blobs'),
+     InlineKeyboardButton(text='Breath', callback_data='Breath')],
+    [InlineKeyboardButton(text='Candle', callback_data='Candle'),
+     InlineKeyboardButton(text='Cinema brighten lights', callback_data='Cinema brighten lights'),
+     InlineKeyboardButton(text='Cinema dim lights', callback_data='Cinema dim lights')],
+    [InlineKeyboardButton(text='Cold mood blobs', callback_data='Cold mood blobs'),
+     InlineKeyboardButton(text='Collision', callback_data='Collision'),
+     InlineKeyboardButton(text='Color traces', callback_data='Color traces')],
+    [InlineKeyboardButton(text='Double swirl', callback_data='Double swirl'),
+     InlineKeyboardButton(text='Fire', callback_data='Fire'),
+     InlineKeyboardButton(text='Flags Germany/Sweden', callback_data='Flags Germany/Sweden')],
+    [InlineKeyboardButton(text='Full color mood blobs', callback_data='Full color mood blobs'),
+     InlineKeyboardButton(text='Green mood blobs', callback_data='Green mood blobs'),
+     InlineKeyboardButton(text='Knight rider', callback_data='Knight rider')],
+    [InlineKeyboardButton(text='Led Test', callback_data='Led Test'),
+     InlineKeyboardButton(text='Led Test - Sequence', callback_data='Led Test - Sequence'),
+     InlineKeyboardButton(text='Light clock', callback_data='Light clock')],
+    [InlineKeyboardButton(text='Lights', callback_data='Lights'),
+     InlineKeyboardButton(text='Matrix', callback_data='Matrix'),
+     InlineKeyboardButton(text='Notify blue', callback_data='Notify blue')],
+    [InlineKeyboardButton(text='Pac-Man', callback_data='Pac-Man'),
+     InlineKeyboardButton(text='Plasma', callback_data='Plasma'),
+     InlineKeyboardButton(text='Police Lights Single', callback_data='Police Lights Single')],
+    [InlineKeyboardButton(text='Police Lights Solid', callback_data='Police Lights Solid'),
+     InlineKeyboardButton(text='Rainbow mood', callback_data='Rainbow mood'),
+     InlineKeyboardButton(text='Rainbow swirl', callback_data='Rainbow swirl')],
+    [InlineKeyboardButton(text='Rainbow swirl fast', callback_data='Rainbow swirl fast'),
+     InlineKeyboardButton(text='Random', callback_data='Random'),
+     InlineKeyboardButton(text='Red mood blobs', callback_data='Red mood blobs')],
+    [InlineKeyboardButton(text='Sea waves', callback_data='Sea waves'),
+     InlineKeyboardButton(text='Snake', callback_data='Snake'),
+     InlineKeyboardButton(text='Sparks', callback_data='Sparks')],
+    [InlineKeyboardButton(text='Strobe red', callback_data='Strobe red'),
+     InlineKeyboardButton(text='Strobe white', callback_data='Strobe white'),
+     InlineKeyboardButton(text='System Shutdown', callback_data='System Shutdown')],
+    [InlineKeyboardButton(text='Trails', callback_data='Trails'),
+     InlineKeyboardButton(text='Trails color', callback_data='Trails color'),
+     InlineKeyboardButton(text='Warm mood blobs', callback_data='Warm mood blobs')],
+    [InlineKeyboardButton(text='Waves with Color', callback_data='Waves with Color'),
+     InlineKeyboardButton(text='X-Mas', callback_data='X-Mas')]
+]
+
+color_effect_keyboard = InlineKeyboardMarkup(inline_keyboard=color_effect_button)
 
 # Start Telegram bot
 script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -173,9 +249,10 @@ with open(secrets_path, 'r') as secrets_file:
 chat_id_key = secrets['id']
 
 bot = telepot.Bot(secrets['token'])
-MessageLoop(bot, handle).run_as_thread()
+MessageLoop(bot, {'chat': handle,
+                  'callback_query': on_callback_query}).run_as_thread()
 print('Im listening...')
-bot.sendMessage(chat_id_key, 'Hello World 👋🏽')
+bot.sendMessage(chat_id_key, 'Hello World 👋🏽', reply_markup=main_keyboard)
 
 while 1:
     # For Linux (Raspberry)
