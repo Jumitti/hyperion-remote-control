@@ -5,14 +5,14 @@ The Hyperion Remote Control script leverages the Hyperion project, enabling user
 
 ### Table
 1. [What is Hyperion](#hyperion)
-2. [Installation of Hyperion Remote Control](#a-idinstallainstallation-of-hyperion-remote-control)
-3. [How to use Hyperion Remote Control](#a-idhyperion_remote_controlahow-to-use-hyperion-remote-control)
-   1. [NEWS from HRC v1.0](#a-idnewsanews-from-hrc-v10httpsgithubcomjumittihyperion-remote-controlreleasestagv10)
-   2. [List of commands](#a-idlist_commandalist-of-commands)
-4. [Can I use my own command ?](#a-idown_commandacan-i-use-my-own-command-)
-5. [A Telegram Bot is secure ?](#a-idsecureaa-telegram-bot-is-secure-)
-6. [Disclaimer](#a-iddisclaimeradisclaimer)
-7. [Credit](#a-idcreditacredit)
+2. [Installation of Hyperion Remote Control](#install)
+3. [How to use Hyperion Remote Control](#hyperion_remote_control)
+   1. [NEWS from HRC v1.0](#news)
+   2. [List of commands](#list_command)
+4. [Can I use my own command ?](#own_command)
+5. [A Telegram Bot is secure ?](#secure)
+6. [Disclaimer](#disclaimer)
+7. [Credit](#credit)
 
 ## <a id="hyperion"></a>What is Hyperion
 Hyperion is an open-source project designed to enhance the viewing experience by synchronizing ambient LED lighting with on-screen content. It utilizes a Raspberry Pi or similar hardware to control individual LEDs placed around a TV or monitor. Hyperion analyzes the screen content in real-time, creating dynamic lighting effects that extend beyond the display.
