@@ -30,17 +30,17 @@ def handle(msg):
             if os_name == 'Linux':
                 # Useful commands for Raspberry
                 if command in ['/temperature', 'Temp. 🌡️']:
-                    bot.sendMessage(chat_id_key, f'{str(temperature)} °C')
+                    bot.sendMessage(chat_id_key, f'{str(temperature)} °C', reply_markup=main_keyboard)
 
                 if command in ['/quick_update', 'Update ⚙️']:
-                    bot.sendMessage(chat_id_key, 'Starting update...')
+                    bot.sendMessage(chat_id_key, 'Starting update...', reply_markup=main_keyboard)
                     os.system('sudo apt-get update -y')
                     bot.sendMessage(chat_id_key, 'Update done.\nStarting upgrade...')
                     os.system('sudo apt-get upgrade -y')
                     bot.sendMessage(chat_id_key, 'Upgrade done')
 
                 if command == '/update':
-                    bot.sendMessage(chat_id_key, 'Starting update...')
+                    bot.sendMessage(chat_id_key, 'Starting update...', reply_markup=main_keyboard)
                     os.system('sudo apt-get update -y')
                     bot.sendMessage(chat_id_key, 'Update done.\nStarting upgrade...')
                     os.system('sudo apt-get upgrade -y')
@@ -49,11 +49,11 @@ def handle(msg):
                     bot.sendMessage(chat_id_key, 'Autoremove done.\nStarting reboot...\nSee U soon')
 
                 if command in ['/reboot', 'Reboot 🔄️']:
-                    bot.sendMessage(chat_id_key, 'See U soon')
+                    bot.sendMessage(chat_id_key, 'See U soon', reply_markup=main_keyboard)
                     os.system('sudo reboot now')
 
                 if command in ['/shutdown', 'Shutdown 🛑']:
-                    bot.sendMessage(chat_id_key, 'Seen U soon')
+                    bot.sendMessage(chat_id_key, 'Seen U soon', reply_markup=main_keyboard)
                     os.system('sudo shutdown now')
 
         elif command in command_hyperion:
@@ -62,21 +62,21 @@ def handle(msg):
                 os.system('hyperion-remote --on')
                 os.system('hyperion-remote --clearall')
                 os.system('hyperion-remote -E V4L')
-                bot.sendMessage(chat_id_key, "Ambilight ON")
+                bot.sendMessage(chat_id_key, "Ambilight ON", reply_markup=main_keyboard)
 
             if command in ['/hyperion_off', 'Stop 🌚']:
                 os.system('hyperion-remote --off')
-                bot.sendMessage(chat_id_key, "Ambilight OFF")
+                bot.sendMessage(chat_id_key, "Ambilight OFF", reply_markup=main_keyboard)
 
             if command in ['/video_on', 'Video ▶️']:
                 os.system('hyperion-remote --clearall')
                 os.system('hyperion-remote -E V4L')
-                bot.sendMessage(chat_id_key, "Video ON")
+                bot.sendMessage(chat_id_key, "Video ON", reply_markup=main_keyboard)
 
             if command in ['/video_off', 'Video ⏹️']:
                 os.system('hyperion-remote --clearall')
                 os.system('hyperion-remote -D V4L')
-                bot.sendMessage(chat_id_key, "Video OFF")
+                bot.sendMessage(chat_id_key, "Video OFF", reply_markup=main_keyboard)
 
             if command in ['/brightness', 'Bright. 🔅']:
                 bot.sendMessage(chat_id_key, 'Choose brightness:', reply_markup=brightness_keyboard)
@@ -87,7 +87,7 @@ def handle(msg):
         elif command in command_telegram_bot:
             # Commands for Telegram bot
             if command == '/test':
-                bot.sendMessage(chat_id_key, "I'm running :)")
+                bot.sendMessage(chat_id_key, "I'm running :)", reply_markup=main_keyboard)
 
             if command in ['/help', 'Help ❔']:
                 if os_name == 'Linux':
@@ -104,7 +104,7 @@ def handle(msg):
                                     "/brightness - Manage brightness\n"
                                     "/effect - Select effect\n"
                                     "/test - Is my Telegram bot still works ?\n"
-                                    "/help - A little reminder")
+                                    "/help - A little reminder", reply_markup=main_keyboard)
                 else:
                     bot.sendMessage(chat_id_key,
                                     "/hyperion_on - Turn on Hyperion\n"
@@ -114,13 +114,13 @@ def handle(msg):
                                     "/brightness - Manage brightness\n"
                                     "/effect - Select effect\n"
                                     "/test - Is my Telegram bot still works ?\n"
-                                    "/help - A little reminder")
+                                    "/help - A little reminder", reply_markup=main_keyboard)
 
         else:
             if os_name != 'Linux':
-                bot.sendMessage(chat_id_key, f"Command not allowed for {os_name}... Try /help")
+                bot.sendMessage(chat_id_key, f"Command not allowed for {os_name}... Try /help", reply_markup=main_keyboard)
             else:
-                bot.sendMessage(chat_id_key, "I don't understand... Try /help")
+                bot.sendMessage(chat_id_key, "I don't understand... Try /help", reply_markup=main_keyboard)
 
     # For unknown ID connection
     else:
@@ -157,10 +157,6 @@ command_hyperion = ['/hyperion_on', 'Start 🌞',
                     '/hyperion_off', 'Stop 🌚',
                     '/brightness', 'Bright. 🔅',
                     '/effect', 'Effect 🎆',
-                    '/b100',
-                    '/b75',
-                    '/b50',
-                    '/b25',
                     '/video_on', 'Video ▶️',
                     '/video_off', 'Video ⏹️']
 

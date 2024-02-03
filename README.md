@@ -143,6 +143,19 @@ On the device where you install Hyperion:
 
 # How to use Hyperion Remote Control
 
+## NEWS from [HRC v1.0](https://github.com/Jumitti/hyperion-remote-control/releases/tag/v1.0)
+A keyboard with all options is available. You can also change the brightness and apply colors or effects.
+
+*Note*: The functions are also accessible as commands (see **List of commands** section below). A description is associated with it.
+<div style="text-align:center">
+    <p float="left">
+      <img src="img/brightness.jpg" width="100" />
+      <img src="img/effects.jpg" width="100" /> 
+      <img src="img/menu.jpg" width="100" />
+    </p>
+</div>
+
+## List of commands
 Just send ```/help``` to your Telegram bot and see all command ! 😊
 
 *Tips*: you can set command from ```/help``` with [@BotFather](https://telegram.me/BotFather) to have a quick access
@@ -163,10 +176,8 @@ Just send ```/help``` to your Telegram bot and see all command ! 😊
 | `/hyperion_off` | Turn off Hyperion                                   | ✅         | ✅       |
 | `/video_on`     | Hyperion based on video input                       | ✅         | ✅       |
 | `/video_off`    | Hyperion background effect/color                    | ✅         | ✅       |
-| `/b100`         | Brightness 100%                                     | ✅         | ✅       |
-| `/b75`          | Brightness 75%                                      | ✅         | ✅       |
-| `/b50`          | Brightness 50%                                      | ✅         | ✅       |
-| `/b25`          | Brightness 25%                                      | ✅         | ✅       |
+| `/brightness`   | Manage brightness                                   | ✅         | ✅       |
+| `/effect`       | Select color/effect                                 | ✅         | ✅       |
 | `/test`         | Is my Telegram bot still working?                   | ✅         | ✅       |
 | `/help`         | A little reminder                                   | ✅         | ✅       |
 
