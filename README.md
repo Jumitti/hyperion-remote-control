@@ -3,6 +3,17 @@ A Telegram bot to control Hyperion ambilight 🎉
 
 The Hyperion Remote Control script leverages the Hyperion project, enabling users to control and customize their ambient lighting experience. Integrated with a Telegram bot, the script allows users to command Hyperion functions.
 
+### Table
+1. [What is Hyperion](https://github.com/Jumitti/hyperion-remote-control#what-is-hyperion)
+2. [Installation of Hyperion Remote Control](https://github.com/Jumitti/hyperion-remote-control#installation-of-hyperion-remote-control)
+3. [How to use Hyperion Remote Control](https://github.com/Jumitti/hyperion-remote-control#how-to-use-hyperion-remote-control)
+   1. [NEWS from HRC v1.0](https://github.com/Jumitti/hyperion-remote-control#news-from-hrc-v10)
+   2. [List of commands](https://github.com/Jumitti/hyperion-remote-control#list-of-commands)
+4. [Can I use my own command ?](https://github.com/Jumitti/hyperion-remote-control#can-i-use-my-own-command-)
+5. [A Telegram Bot is secure ?](https://github.com/Jumitti/hyperion-remote-control#a-telegram-bot-is-secure-)
+6. [Disclaimer](https://github.com/Jumitti/hyperion-remote-control#disclaimer)
+7. [Credit](https://github.com/Jumitti/hyperion-remote-control#credit)
+
 ## What is Hyperion
 Hyperion is an open-source project designed to enhance the viewing experience by synchronizing ambient LED lighting with on-screen content. It utilizes a Raspberry Pi or similar hardware to control individual LEDs placed around a TV or monitor. Hyperion analyzes the screen content in real-time, creating dynamic lighting effects that extend beyond the display.
 
@@ -59,7 +70,7 @@ On the device where you install Hyperion:
     ```
     pip install gpiozero
     ```
-2. Extract ```HRC.zip``` where you want → [Release](https://github.com/Jumitti/hyperion-remote-control/releases)
+2. Extract ```HRC v?.zip``` where you want → [Release](https://github.com/Jumitti/hyperion-remote-control/releases)
    - (For Raspberry) Don't forget to give all permissions at ```HRC``` folder:
      - In ```HRC``` folder, open a terminal:
      ```
@@ -146,7 +157,7 @@ On the device where you install Hyperion:
 ## NEWS from [HRC v1.0](https://github.com/Jumitti/hyperion-remote-control/releases/tag/v1.0)
 A keyboard with all options is available. You can also change the brightness and apply colors or effects.
 
-*Note*: The functions are also accessible as commands (see **List of commands** section below). A description is associated with it.
+*Note*: The functions are also accessible as commands (see **[List of commands](https://github.com/Jumitti/hyperion-remote-control?tab=readme-ov-file#list-of-commands)** section). A description is associated with it.
 <div style="text-align:center">
     <p float="left">
       <img src="img/menu.jpg" width="100" />
@@ -226,3 +237,8 @@ Yes it is if you don't create a public bot. When in doubt, you put your token an
 
 # Disclaimer
 This project is an independent initiative for enhancing the Hyperion experience and is not affiliated with the official Hyperion project or Philips Ambilight.
+
+# Credit
+Copyright (c) 2024 Minniti Julien.
+
+This software is distributed under an [MIT licence](https://github.com/Jumitti/hyperion-remote-control/blob/main/LICENSE).
