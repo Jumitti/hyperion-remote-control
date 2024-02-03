@@ -4,17 +4,17 @@ A Telegram bot to control Hyperion ambilight 🎉
 The Hyperion Remote Control script leverages the Hyperion project, enabling users to control and customize their ambient lighting experience. Integrated with a Telegram bot, the script allows users to command Hyperion functions.
 
 ### Table
-1. [What is Hyperion](https://github.com/Jumitti/hyperion-remote-control#what-is-hyperion)
-2. [Installation of Hyperion Remote Control](https://github.com/Jumitti/hyperion-remote-control#installation-of-hyperion-remote-control)
-3. [How to use Hyperion Remote Control](https://github.com/Jumitti/hyperion-remote-control#how-to-use-hyperion-remote-control)
-   1. [NEWS from HRC v1.0](https://github.com/Jumitti/hyperion-remote-control#news-from-hrc-v10)
-   2. [List of commands](https://github.com/Jumitti/hyperion-remote-control#list-of-commands)
-4. [Can I use my own command ?](https://github.com/Jumitti/hyperion-remote-control#can-i-use-my-own-command-)
-5. [A Telegram Bot is secure ?](https://github.com/Jumitti/hyperion-remote-control#a-telegram-bot-is-secure-)
-6. [Disclaimer](https://github.com/Jumitti/hyperion-remote-control#disclaimer)
-7. [Credit](https://github.com/Jumitti/hyperion-remote-control#credit)
+1. [What is Hyperion](#a-idhyperionawhat-is-hyperion)
+2. [Installation of Hyperion Remote Control](#a-idinstallainstallation-of-hyperion-remote-control)
+3. [How to use Hyperion Remote Control](#a-idhyperion_remote_controlahow-to-use-hyperion-remote-control)
+   1. [NEWS from HRC v1.0](#a-idnewsanews-from-hrc-v10httpsgithubcomjumittihyperion-remote-controlreleasestagv10)
+   2. [List of commands](#a-idlist_commandalist-of-commands)
+4. [Can I use my own command ?](#a-idown_commandacan-i-use-my-own-command-)
+5. [A Telegram Bot is secure ?](#a-idsecureaa-telegram-bot-is-secure-)
+6. [Disclaimer](#a-iddisclaimeradisclaimer)
+7. [Credit](#a-idcreditacredit)
 
-## What is Hyperion
+## <a id="hyperion"></a>What is Hyperion
 Hyperion is an open-source project designed to enhance the viewing experience by synchronizing ambient LED lighting with on-screen content. It utilizes a Raspberry Pi or similar hardware to control individual LEDs placed around a TV or monitor. Hyperion analyzes the screen content in real-time, creating dynamic lighting effects that extend beyond the display.
 
 #### Key Features
@@ -38,7 +38,7 @@ Ambilight, developed by Philips, is a proprietary ambient lighting technology in
 
 - **Customization:** Hyperion offers extensive customization options, while Ambilight's features are tailored to work seamlessly with Philips TVs.
 
-# Installation of Hyperion Remote Control
+# <a id="install"></a>Installation of Hyperion Remote Control
 ### Installation of Hyperion:
 - GitHub repo of Hyperion: [Hyperion](https://github.com/hyperion-project/hyperion.ng)
 - GitHub repo of HyperBian (for Rasbian OS): [HyperBian](https://github.com/hyperion-project/HyperBian/)
@@ -152,9 +152,9 @@ On the device where you install Hyperion:
         ```
     *Note*: You can use ```crontab``` way but I don't like it
 
-# How to use Hyperion Remote Control
+# <a id="hyperion_remote_control"></a>How to use Hyperion Remote Control
 
-## NEWS from [HRC v1.0](https://github.com/Jumitti/hyperion-remote-control/releases/tag/v1.0)
+## <a id="news"></a>NEWS from [HRC v1.0](https://github.com/Jumitti/hyperion-remote-control/releases/tag/v1.0)
 A keyboard with all options is available. You can also change the brightness and apply colors or effects.
 
 *Note*: The functions are also accessible as commands (see **[List of commands](https://github.com/Jumitti/hyperion-remote-control?tab=readme-ov-file#list-of-commands)** section). A description is associated with it.
@@ -166,7 +166,7 @@ A keyboard with all options is available. You can also change the brightness and
     </p>
 </div>
 
-## List of commands
+## <a id="list_command"></a>List of commands
 Just send ```/help``` to your Telegram bot and see all command ! 😊
 
 *Tips*: you can set command from ```/help``` with [@BotFather](https://telegram.me/BotFather) to have a quick access
@@ -225,20 +225,20 @@ I add a function to auto-update your Raspberry every monday @ 02:30 and major up
         bot.sendMessage(chat_id_key, 'Monthly autoremove done.\nStarting reboot...\nSee U soon')
     ```
 
-# Can I use my own command ?
+# <a id="own_command"></a>Can I use my own command ?
 
 Yes of course, my script use JSON commands. Documentation [HERE](https://docs.hyperion-project.org/en/json/Control.html#sections)
 
 Feel free to create your own Telegram bot with your own command 😊 My script is just a proof of concept 😊
 
-# A Telegram Bot is secure ?
+# <a id="secure"></a>A Telegram Bot is secure ?
 
 Yes it is if you don't create a public bot. When in doubt, you put your token and your ID in a SECRETS.json file. So your identifiers are not written in the script. In addition, I added a function that prevents commands from an unrecognized ID from being executed. A prevention message is sent to the unrecognized ID. And a message will be sent to you to warn you in this case with the ID trying to communicate with your Telegram Bot. 
 
-# Disclaimer
+# <a id="disclaimer"></a>Disclaimer
 This project is an independent initiative for enhancing the Hyperion experience and is not affiliated with the official Hyperion project or Philips Ambilight.
 
-# Credit
+# <a id="credit"></a>Credit
 Copyright (c) 2024 Minniti Julien.
 
 This software is distributed under an [MIT licence](https://github.com/Jumitti/hyperion-remote-control/blob/main/LICENSE).
